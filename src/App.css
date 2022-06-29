@@ -2,3 +2,9 @@
     width: 125px;
     height: 80px;
 }
+.signinBar{
+    position: absolute;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid black;;
+}
