@@ -87,20 +87,20 @@ export default function App() {
       <snippyly-cursor></snippyly-cursor>
       <snippyly-presence></snippyly-presence>
       <Box>
-        <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}>
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
               Website Builder
             </Typography>
             <div>
               {selectedUser ? (
                 <div>
-                  <span>Hi, {selectedUser.name}</span>
+                  <span className = "navLbl">Hi, {selectedUser.name}</span>
                   <Button variant = "outlined" color = "inherit" sx = {{mr: '20px'}} onClick={() => signOut()}>Sign Out</Button>
                 </div>
               ) : (
                 <div>
-                  <span>Sign In with:</span>
+                   <span className = "navLbl">Sign In with:</span>
                   {users.map((user) => {
                     return (
                       <Button
@@ -125,7 +125,7 @@ export default function App() {
           </Toolbar>
         </AppBar>
         <EditSideBar />
-        <Box sx={{ flexGrow: 1, mr: "250px", ml: "175px", mt: "60px" }}>
+        <Box sx={{ flexGrow: 1, mr: "250px", ml: "175px", mt: -1}}>
           <PagePreview />
         </Box>
         <NavSideBar />

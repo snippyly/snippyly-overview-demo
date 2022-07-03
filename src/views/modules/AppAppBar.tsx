@@ -13,7 +13,7 @@ const rightLink = {
 function AppAppBar() {
   return (
     <div>
-      <AppBar sx = {{pr: '250px', pl: "175px", mt: '60px'}}>
+      <AppBar sx = {{pr: '250px', pl: "175px", mt: '60px'}} color = "transparent">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box sx={{ flex: 1 }} />
           <Link
@@ -26,15 +26,6 @@ function AppAppBar() {
             {'onepirate'}
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-            <Link
-              color="inherit"
-              variant="h6"
-              underline="none"
-              href="/premium-themes/onepirate/sign-in/"
-              sx={rightLink}
-            >
-              {'Sign In'}
-            </Link>
             <Link
               variant="h6"
               underline="none"
