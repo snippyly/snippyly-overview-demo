@@ -9,7 +9,6 @@ import AppBar from "@mui/material/AppBar";
 import PagePreview from "./views/PagePreview";
 import EditSideBar from "./views/EditSideBar";
 import NavSideBar from "./views/NavSideBar";
-import SignInBar from "./views/SignInBar";
 import "./App.css";
 import loadSnippyly from "./loadSnippyly";
 import { SnippylyContext } from "./context/SnippylyContext";
@@ -24,10 +23,18 @@ export default function App() {
     // Note: We will define init in the next section of the documentation.
     loadSnippyly(init);
   }, []);
+
   const init = async () => {
     const c = await Snippyly.init("9MpMA2sf8N0imiqsqPCk");
+
     setClient(c);
+
+    const commentElement = c.getCommentElement();
+    console.log(commentElement)
+    commentElement.enableTextCommentButton(true);
   };
+
+
   type User = {
     userId: string;
     name: string;
@@ -44,6 +51,21 @@ export default function App() {
 
   const [selectedUser, setSelectedUser] = useState<any>(null);
 
+  const signIn = (user: any): void => {
+    setSelectedUser(user);
+  };
+
+  const signOut = () => {
+    setSelectedUser(null)
+  };
+
+  // To set user in Snippyly
+  const identifySnippyly = async () => {
+    if (client) {
+          client.identify(selectedUser)
+    }
+  };
+
   useEffect(() => {
     // To call identifySnippyly once Snippyly is loaded and user is available
     if (selectedUser && client) {
@@ -51,47 +73,18 @@ export default function App() {
     }
   }, [selectedUser, client]);
 
-  // To set user in Snippyly
-  const identifySnippyly = async () => {
-    console.log("attempting login");
-    if (client) {
-      client
-        .identify(selectedUser)
-        .then(() => {
-          // User login successful
-          console.log("Successful login");
-        })
-        .catch(() => {
-          // User login failure
-          console.log("Failed login");
-        });
-    }
-  };
-
-  const signIn = (user: any): void => {
-    // Add custom logic here to login user
-    // Once user is available call identifySnippyly
-    localStorage.setItem("user", JSON.stringify(user));
-    setSelectedUser(user);
-    console.log("signed in as:");
-    console.log(user);
-  };
-
-  const signOut = () => {
-    localStorage.removeItem("user");
-    window.location.reload();
-  };
 
   return (
     <SnippylyContext.Provider value={{ client }}>
       <snippyly-cursor></snippyly-cursor>
-      <snippyly-presence></snippyly-presence>
+      <snippyly-comments></snippyly-comments>
       <Box>
         <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
               Website Builder
             </Typography>
+            <snippyly-comment-tool></snippyly-comment-tool>
             <div>
               {selectedUser ? (
                 <div>
@@ -117,11 +110,14 @@ export default function App() {
                   })}
                 </div>
               )}
-            </div>
+              
 
-            <Button variant="contained" color="success">
+            </div>
+            
+            <Button variant="contained" color="success" sx = {{mr: 5, ml: 5}}>
               Publish
             </Button>
+            <snippyly-presence></snippyly-presence>
           </Toolbar>
         </AppBar>
         <EditSideBar />
@@ -130,7 +126,6 @@ export default function App() {
         </Box>
         <NavSideBar />
       </Box>
-      <SignInBar />
     </SnippylyContext.Provider>
   );
 }
