@@ -17,6 +17,7 @@ import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Button from "@mui/material/Button"
 
 export default function EditSideBar() {
     return  <Drawer
@@ -36,8 +37,11 @@ export default function EditSideBar() {
 <Tab label="Advanced" />
 </Tabs>
 </Box> 
-<Container>
-<TextField
+<Container sx = {{pt: '15px'}}>
+<snippyly-comment-tool>
+    <Button variant = "outlined">Add Comment</Button>
+</snippyly-comment-tool>
+<TextField 
           id="outlined-multiline-static"
           label="Text"
           multiline

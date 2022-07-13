@@ -81,10 +81,12 @@ export default function App() {
       <Box>
         <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}>
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
+            <div className = "lhNav">
+            <Typography variant="h6" sx = {{mr: '20px'}}>
               Website Builder
             </Typography>
-            <snippyly-comment-tool></snippyly-comment-tool>
+            <snippyly-presence></snippyly-presence>
+            </div>
             <div>
               {selectedUser ? (
                 <div>
@@ -117,7 +119,7 @@ export default function App() {
             <Button variant="contained" color="success" sx = {{mr: 5, ml: 5}}>
               Publish
             </Button>
-            <snippyly-presence></snippyly-presence>
+            
           </Toolbar>
         </AppBar>
         <EditSideBar />

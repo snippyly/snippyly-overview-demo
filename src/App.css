@@ -11,3 +11,7 @@
 .navLbl {
     margin-right: 10px;
 }
+.lhNav {
+    flex-grow: 1;
+    display: flex;
+}
