@@ -25,7 +25,7 @@ export default function App() {
   }, []);
 
   const init = async () => {
-    const c = await Snippyly.init("9MpMA2sf8N0imiqsqPCk");
+    const c = await Snippyly.init("<Enter-Your-API-Key>");
 
     setClient(c);
 
